@@ -13,7 +13,7 @@ void main() async {
 ThemeData _buildTheme(Brightness brightness) {
   return ThemeData(
     colorScheme: ColorScheme.fromSeed(
-      seedColor: Colors.blue,
+      seedColor: Colors.red,
       brightness: brightness,
     ),
   );

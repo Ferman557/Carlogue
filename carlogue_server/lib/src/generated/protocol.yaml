@@ -1,3 +1,5 @@
+greet:
+  - hello:
 emailIdp:
   - login:
   - startRegistration:

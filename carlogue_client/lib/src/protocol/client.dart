@@ -21,6 +21,20 @@ import 'package:serverpod_auth_idp_client/serverpod_auth_idp_client.dart'
 import 'package:serverpod_client/serverpod_client.dart' as _isc;
 import 'protocol.dart' as _il2as5qe;
 
+/// {@category Endpoint}
+class EndpointGreet extends _isc.EndpointRef {
+  EndpointGreet(_isc.EndpointCaller caller) : super(caller);
+
+  @override
+  String get name => 'greet';
+
+  _ida.Future<String> hello(String name) => caller.callServerEndpoint<String>(
+    'greet',
+    'hello',
+    {'name': name},
+  );
+}
+
 /// By extending [EmailIdpBaseEndpoint], the email identity provider endpoints
 /// are made available on the server and enable the corresponding sign-in widget
 /// on the client.
@@ -302,11 +316,14 @@ class Client extends _isc.ServerpodClientShared {
              disconnectStreamsOnLostInternetConnection,
          httpClientOverride: httpClientOverride,
        ) {
+    greet = EndpointGreet(this);
     emailIdp = EndpointEmailIdp(this);
     jwtRefresh = EndpointJwtRefresh(this);
     greeting = EndpointGreeting(this);
     modules = Modules(this);
   }
+
+  late final EndpointGreet greet;
 
   late final EndpointEmailIdp emailIdp;
 
@@ -318,6 +335,7 @@ class Client extends _isc.ServerpodClientShared {
 
   @override
   Map<String, _isc.EndpointRef> get endpointRefLookup => {
+    'greet': greet,
     'emailIdp': emailIdp,
     'jwtRefresh': jwtRefresh,
     'greeting': greeting,

@@ -15,7 +15,6 @@ import 'package:serverpod_auth_core_server/serverpod_auth_core_server.dart'
     as _iacs;
 import 'package:serverpod_auth_idp_server/serverpod_auth_idp_server.dart'
     as _iais;
-import '../../server.dart' as _i7nkgeh8;
 import '../auth/email_idp_endpoint.dart' as _iuc1hd5t;
 import '../auth/jwt_refresh_endpoint.dart' as _inwq3ztq;
 import '../greetings/greeting_endpoint.dart' as _il624ik7;
@@ -24,12 +23,6 @@ class Endpoints extends _is.EndpointDispatch {
   @override
   void initializeEndpoints(_is.Server server) {
     var endpoints = <String, _is.Endpoint>{
-      'greet': _i7nkgeh8.GreetEndpoint()
-        ..initialize(
-          server,
-          'greet',
-          null,
-        ),
       'emailIdp': _iuc1hd5t.EmailIdpEndpoint()
         ..initialize(
           server,
@@ -49,30 +42,6 @@ class Endpoints extends _is.EndpointDispatch {
           null,
         ),
     };
-    connectors['greet'] = _is.EndpointConnector(
-      name: 'greet',
-      endpoint: endpoints['greet']!,
-      methodConnectors: {
-        'hello': _is.MethodConnector(
-          name: 'hello',
-          params: {
-            'name': _is.ParameterDescription(
-              name: 'name',
-              type: _is.getType<String>(),
-              nullable: false,
-            ),
-          },
-          call:
-              (
-                _is.Session session,
-                Map<String, dynamic> params,
-              ) async => (endpoints['greet'] as _i7nkgeh8.GreetEndpoint).hello(
-                session,
-                params['name'],
-              ),
-        ),
-      },
-    );
     connectors['emailIdp'] = _is.EndpointConnector(
       name: 'emailIdp',
       endpoint: endpoints['emailIdp']!,

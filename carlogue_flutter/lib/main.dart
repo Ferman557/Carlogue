@@ -4,8 +4,6 @@ import 'client.dart';
 import 'screens/greetings_screen.dart';
 
 void main() async {
-  final greeting = await client.greeting.hello('World');
-  print(greeting);
   WidgetsFlutterBinding.ensureInitialized();
   await initializeClient();
   runApp(const MyApp());

@@ -8,12 +8,6 @@ import 'src/cache_busting.dart';
 import 'src/generated/serverpod.dart';
 import 'src/web/routes/app_config_route.dart';
 
-class GreetEndpoint extends Endpoint {
-  Future<String> hello(Session session, String name) async {
-    return 'Hello, $name';
-  }
-}
-
 /// The starting point of the Serverpod server.
 void run(List<String> args) async {
   // Initialize Serverpod. The generated Serverpod class is already connected
